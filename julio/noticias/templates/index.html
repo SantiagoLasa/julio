@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    
+    <title>Noticias</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+    <script src="main.js"></script>
+
+<style>
+.card {
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+    width: 40%;
+}
+
+.card:hover {
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+
+.container {
+    padding: 2px 16px;
+}
+</style>
+</head>
+<body>
+<div align="center">
+    {% for a in noticias %}
+        <div class="card" align="center">
+        <img src="{{a.foto.url}}"  style="width:100%">
+        <div class="container">
+            <p> {{ a.introduccion|slice:":30" }}</p>  
+            <div class="row">
+                <---
+                <form action=" url 'puntaje' ">
+                {% csrf_token %}
+                <input type="intiger" name="puntaje" id="puntaje">
+                <button type="submit" value="Submit">puntuar</button>
+            </form>
+        /--->
+            <a href="{% url 'ver_mas' a.id %}"> Ver mas</a>
+        </div>
+        </div>
+        </div>
+
+    {% endfor %}
+</div>
+
+</body>
+</html>
